@@ -78,4 +78,9 @@ public class Player : MonoBehaviour
 	{
 		return _positions;
 	}
+
+	public int GetThumbCount()
+	{
+		return _positions.Count - 2;
+	}
 }
