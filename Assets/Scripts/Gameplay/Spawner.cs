@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+	[Header("References")]
+	public GameObject PickupPrefab;
+
+	[Header("Difficulty")]
+	public float SpawnDelay = 10f;
+	public float PickupLifetime = 2f;
+
+
+	private float _time = 0f;
+
+
     void Start()
     {
         
@@ -11,6 +22,14 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        
+		_time += Time.deltaTime;
+
+		if (_time > SpawnDelay)
+		{
+			_time = 0f;
+			Instantiate(PickupPrefab, Vector3.zero, Quaternion.identity);
+			PickupPrefab.GetComponent<Pickup>().Lifetime = PickupLifetime;
+			Debug.LogError("Spawned");
+		}
     }
 }

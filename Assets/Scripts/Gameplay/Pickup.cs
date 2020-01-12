@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+	public float Lifetime = 10f;
+
+	private float _time = 0f;
+	private Vector3 _initialScale;
 	private CircleCollider2D _collider;
 	private bool _isInactive = false;
-	private float _inactivityTime = 0.8f;
-	private float _timer = 0f;
+	private float _inactivityDuration = 0.8f;
+	private float _inactivityTime = 0f;
 
     void Start()
     {
 		_collider = GetComponent<CircleCollider2D>();
+		_initialScale = transform.localScale;
+		transform.localScale = Vector3.zero;
     }
 
 	void Update()
 	{
+		_time += Time.deltaTime;
+
 		// Scaling
-		if (_isInactive)
+		if (_isInactive || _time > Lifetime)
 		{
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 8f);
-			_timer += Time.deltaTime;
-			if (_timer > _inactivityTime)
+			_inactivityTime += Time.deltaTime;
+			if (_inactivityTime > _inactivityDuration)
 				Destroy(gameObject);
+		}
+		else
+		{
+			transform.localScale = Vector3.Lerp(transform.localScale, _initialScale, Time.deltaTime * 8f);
 		}
 	}
 

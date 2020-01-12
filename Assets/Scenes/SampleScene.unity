@@ -1857,6 +1857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48afeabd3a5e4ed4c8e45fb39abc04c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickupPrefab: {fileID: 8350664772687852994, guid: d1170219514bd3a489f47720cf3fd80b,
+    type: 3}
+  SpawnDelay: 4
+  PickupLifetime: 2
 --- !u!4 &2001800791
 Transform:
   m_ObjectHideFlags: 0
