@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
 	private List<Vector3> _positions = new List<Vector3>();
 	private List<GameObject> _thumbIndicators = new List<GameObject>();
+	private int _score = 0;
 
     void Start()
     {
@@ -42,6 +43,23 @@ public class Player : MonoBehaviour
 		_positions[_positions.Count - 1] = Ball.transform.position;
 		PollInput();
 	}
+
+
+
+
+	// Pickups
+	public void OnPickupHit()
+	{
+		_score += 1;
+	}
+
+	public int GetScore()
+	{
+		return _score;
+	}
+
+
+
 
 
 

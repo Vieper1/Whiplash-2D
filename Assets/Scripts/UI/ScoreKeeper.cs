@@ -17,6 +17,6 @@ public class ScoreKeeper : MonoBehaviour
 
 	void Update()
     {
-		text.text = _player.GetThumbCount() + "/" + _player.ThumbLimit;
+		text.text = _player.GetScore().ToString();
     }
 }
