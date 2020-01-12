@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 		_positions[_positions.Count - 1] = Ball.transform.position;
+		PollInput();
 	}
 
 
@@ -91,5 +92,45 @@ public class Player : MonoBehaviour
 	public int GetThumbCount()
 	{
 		return _positions.Count - 2;
+	}
+
+
+
+
+
+
+
+	// Input Mapping
+	void PollInput()
+	{
+		if (Input.GetKey(KeyCode.RightArrow))
+			Input_Up();
+		if (Input.GetKey(KeyCode.LeftArrow))
+			Input_Down();
+		if (Input.GetKeyDown(KeyCode.Space))
+			Input_AddThumb();
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+			Input_RemoveThumb();
+	}
+
+	public void Input_Up()
+	{
+		Decoy.IncrementRatio();
+	}
+
+	public void Input_Down()
+	{
+		Decoy.DecrementRatio();
+	}
+
+	public void Input_AddThumb()
+	{
+		AddThumb(Decoy.transform.position);
+		Decoy._thumbRatio = Decoy.ThumbRatioDeadzone;
+	}
+
+	public void Input_RemoveThumb()
+	{
+		PopThumb();
 	}
 }

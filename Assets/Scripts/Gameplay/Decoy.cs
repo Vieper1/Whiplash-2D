@@ -5,8 +5,8 @@ using UnityEngine;
 public class Decoy : MonoBehaviour
 {
 	public float ThumbRatioDeadzone = 0.1f;
+	public float _thumbRatio;
 
-	private float _thumbRatio;
 	private Vector3 _initialScale;
 
 	void Start()
@@ -17,23 +17,6 @@ public class Decoy : MonoBehaviour
 
 	void Update()
     {
-		// Input
-		if (Input.GetKey(KeyCode.RightArrow))
-			IncrementRatio();
-
-		if (Input.GetKey(KeyCode.LeftArrow))
-			DecrementRatio();
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			Player.instance.AddThumb(transform.position);
-			_thumbRatio = ThumbRatioDeadzone;
-		}
-
-		if (Input.GetKeyDown(KeyCode.LeftControl))
-			Player.instance.PopThumb();
-
-
 		// Scale
 		if (Player.instance.GetPositions().Count == Player.instance.ThumbLimit + 2)
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 4f);
@@ -53,14 +36,14 @@ public class Decoy : MonoBehaviour
 	}
 
 
-	void IncrementRatio()
+	public void IncrementRatio()
 	{
 		float _newRatio = _thumbRatio + Time.deltaTime * Player.instance.MoveSpeed;
 		if (_newRatio < 1f - ThumbRatioDeadzone)
 			_thumbRatio = _newRatio;
 	}
 
-	void DecrementRatio()
+	public void DecrementRatio()
 	{
 		float _newRatio = _thumbRatio - Time.deltaTime * Player.instance.MoveSpeed;
 		if (_newRatio > ThumbRatioDeadzone)
