@@ -1859,8 +1859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PickupPrefab: {fileID: 8350664772687852994, guid: d1170219514bd3a489f47720cf3fd80b,
     type: 3}
-  SpawnDelay: 4
-  PickupLifetime: 2
+  SpawnDelay: 15
+  PickupLifetime: 15
 --- !u!4 &2001800791
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,10 +1907,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086391601}
+  - component: {fileID: 2086391604}
   - component: {fileID: 2086391603}
   - component: {fileID: 2086391602}
   - component: {fileID: 2086391606}
-  - component: {fileID: 2086391604}
   - component: {fileID: 2086391605}
   m_Layer: 0
   m_Name: Ball
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Center: {x: 0, y: 0, z: 0}
   Radius: 4.5
-  Speed: 1
+  Speed: 2
 --- !u!96 &2086391605
 TrailRenderer:
   serializedVersion: 2

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+	[Header("References")]
+	public Spawner SpawnerRef;
+
+	[Header("Config")]
 	public float Lifetime = 10f;
 
 	private float _time = 0f;
@@ -30,7 +34,10 @@ public class Pickup : MonoBehaviour
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 8f);
 			_inactivityTime += Time.deltaTime;
 			if (_inactivityTime > _inactivityDuration)
+			{
+				SpawnerRef.ResetTimer();
 				Destroy(gameObject);
+			}
 		}
 		else
 		{

@@ -11,14 +11,13 @@ public class Spawner : MonoBehaviour
 	public float SpawnDelay = 10f;
 	public float PickupLifetime = 2f;
 
-
 	private float _time = 0f;
 
 
     void Start()
     {
-        
-    }
+		ResetTimer();
+	}
 
     void Update()
     {
@@ -27,8 +26,15 @@ public class Spawner : MonoBehaviour
 		if (_time > SpawnDelay)
 		{
 			_time = 0f;
-			Instantiate(PickupPrefab, Random.insideUnitCircle * Player.instance.Ball.GetInitialRadius(), Quaternion.identity);
-			PickupPrefab.GetComponent<Pickup>().Lifetime = PickupLifetime;
+			GameObject spawned = Instantiate(PickupPrefab, Random.insideUnitCircle * Player.instance.Ball.GetInitialRadius(), Quaternion.identity);
+			Pickup spawnedPickup = spawned.GetComponent<Pickup>();
+			spawnedPickup.Lifetime = PickupLifetime;
+			spawnedPickup.SpawnerRef = this;
 		}
     }
+
+	public void ResetTimer()
+	{
+		_time = SpawnDelay;
+	}
 }

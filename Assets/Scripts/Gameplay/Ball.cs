@@ -26,12 +26,13 @@ public class Ball : MonoBehaviour
 	void Update()
     {
 		_time += Time.deltaTime * _currentSpeed;
+		//_time += Time.deltaTime;													// Replace to see weird effect
 
 		// Position
 		_currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, Time.deltaTime);
 		transform.position = new Vector3(
-			Center.x + Mathf.Cos(_time) * Radius,
-			Center.y + Mathf.Sin(_time) * Radius);
+			Center.x + Mathf.Cos(_time/* * _currentSpeed*/) * Radius,	//			// Replace to see weird effect
+			Center.y + Mathf.Sin(_time/* * _currentSpeed*/) * Radius);
 
 
 		// Trail
@@ -49,6 +50,7 @@ public class Ball : MonoBehaviour
 
 		Radius = newRadius;
 
+		//_targetSpeed *= _initialRadius / Radius;						//			// Replace to see weird effect
 		_targetSpeed = _initialRadius / Radius * Speed;
 	}
 
