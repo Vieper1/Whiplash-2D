@@ -51,4 +51,9 @@ public class Ball : MonoBehaviour
 
 		_targetSpeed = _initialRadius / Radius * Speed;
 	}
+
+	public float GetInitialRadius()
+	{
+		return _initialRadius;
+	}
 }

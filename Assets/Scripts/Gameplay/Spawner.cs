@@ -27,9 +27,8 @@ public class Spawner : MonoBehaviour
 		if (_time > SpawnDelay)
 		{
 			_time = 0f;
-			Instantiate(PickupPrefab, Vector3.zero, Quaternion.identity);
+			Instantiate(PickupPrefab, Random.insideUnitCircle * Player.instance.Ball.GetInitialRadius(), Quaternion.identity);
 			PickupPrefab.GetComponent<Pickup>().Lifetime = PickupLifetime;
-			Debug.LogError("Spawned");
 		}
     }
 }
