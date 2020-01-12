@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 	[Header("References")]
 	public Ball Ball;
 	public Decoy Decoy;
-	public GameObject KinkIndicatorPrefab;
+	public GameObject ThumbIndicatorPrefab;
 
 	[Header("Game")]
 	public int ThumbLimit = 3;
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 	public float MoveSpeed = 1f;
 
 	private List<Vector3> _positions = new List<Vector3>();
+	private List<GameObject> _thumbIndicators = new List<GameObject>();
 
     void Start()
     {
@@ -39,7 +40,6 @@ public class Player : MonoBehaviour
     void Update()
     {
 		_positions[_positions.Count - 1] = Ball.transform.position;
-		Debug.LogError(_positions.Count);
 	}
 
 
@@ -59,6 +59,10 @@ public class Player : MonoBehaviour
 			for (int i = _positions.Count - 2; i < _positions.Count - 1; i++)
 				_distance += (_positions[i + 1] - _positions[i]).magnitude;
 			Ball.SetCenter(thumbPosition, _distance);
+
+			GameObject thumb = Instantiate(ThumbIndicatorPrefab, thumbPosition, Quaternion.identity);
+			thumb.transform.localScale = new Vector3(0.025f, 0.025f, 1f);
+			_thumbIndicators.Add(thumb);
 		}
 	}
 
@@ -71,6 +75,11 @@ public class Player : MonoBehaviour
 				_distance += (_positions[i + 1] - _positions[i]).magnitude;
 			_positions.RemoveAt(_positions.Count - 2);
 			Ball.SetCenter(_positions[_positions.Count - 2], _distance);
+
+			int _removeAtIndex = _thumbIndicators.Count - 1;
+			GameObject _thumb = _thumbIndicators[_removeAtIndex];
+			_thumbIndicators.RemoveAt(_removeAtIndex);
+			Destroy(_thumb);
 		}
 	}
 

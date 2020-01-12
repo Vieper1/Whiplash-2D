@@ -13,22 +13,25 @@ public class Ball : MonoBehaviour
 	private bool _isTrailActive;
 	private float _initialRadius;
 	private float _currentSpeed;
+	private float _targetSpeed;
+
 
 	void Start()
 	{
 		_initialRadius = Radius;
 		_currentSpeed = Speed;
+		_targetSpeed = Speed;
 	}
 
 	void Update()
     {
-		_time += Time.deltaTime;
+		_time += Time.deltaTime * _currentSpeed;
 
 		// Position
-		_currentSpeed = Mathf.Lerp(_currentSpeed, Speed, Time.deltaTime);
+		_currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, Time.deltaTime);
 		transform.position = new Vector3(
-			Center.x + Mathf.Cos(_time * _currentSpeed) * Radius,
-			Center.y + Mathf.Sin(_time * _currentSpeed) * Radius);
+			Center.x + Mathf.Cos(_time) * Radius,
+			Center.y + Mathf.Sin(_time) * Radius);
 
 
 		// Trail
@@ -43,15 +46,9 @@ public class Ball : MonoBehaviour
 	{
 		Center = newCenter;
 		List<Vector3> _positions = Player.instance.GetPositions();
-		//float _distance = 0;
-		//for (int i = positionStartIndex; i < positionEndIndex; i++)
-		//{
-		//	_distance += (_positions[i + 1] - _positions[i]).magnitude;
-		//}
-		//Radius = _distance;
 
 		Radius = newRadius;
 
-		//Speed *= _initialRadius / Radius;
+		_targetSpeed = _initialRadius / Radius * Speed;
 	}
 }

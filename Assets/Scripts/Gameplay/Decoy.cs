@@ -36,9 +36,9 @@ public class Decoy : MonoBehaviour
 
 		// Scale
 		if (Player.instance.GetPositions().Count == Player.instance.ThumbLimit + 2)
-			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
+			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 4f);
 		else
-			transform.localScale = Vector3.Lerp(transform.localScale, _initialScale, Time.deltaTime);
+			transform.localScale = Vector3.Lerp(transform.localScale, _initialScale, Time.deltaTime * 4f);
 
 
 		// Update Position
