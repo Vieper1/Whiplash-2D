@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
 			_time = 0f;
 			GameObject spawned = Instantiate(PickupPrefab, Random.insideUnitCircle * Player.instance.Ball.GetInitialRadius(), Quaternion.identity);
 			Pickup spawnedPickup = spawned.GetComponent<Pickup>();
+			spawnedPickup.transform.localScale = Player.instance.Ball.transform.localScale;
 			spawnedPickup.Lifetime = PickupLifetime;
 			spawnedPickup.SpawnerRef = this;
 		}
