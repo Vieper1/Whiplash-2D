@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
 
 		_positions.Add(transform.position);
 		_positions.Add(Vector3.zero);
+
+		// Aspect Ratio Size Control
+
 	}
 	
     void Update()
@@ -50,7 +53,7 @@ public class Player : MonoBehaviour
 	// Pickups
 	public void OnPickupHit()
 	{
-		_score += 1;
+		_score += _positions.Count - 1;
 	}
 
 	public int GetScore()
