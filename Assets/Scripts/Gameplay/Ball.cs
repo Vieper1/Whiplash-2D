@@ -14,6 +14,8 @@ public class Ball : MonoBehaviour
 	private float _initialRadius;
 	private float _currentSpeed;
 	private float _targetSpeed;
+	private TrailRenderer _trailRenderer;
+	private float _trailFallRate;
 
 
 	void Start()
@@ -21,26 +23,34 @@ public class Ball : MonoBehaviour
 		_initialRadius = Radius;
 		_currentSpeed = Speed;
 		_targetSpeed = Speed;
+		_trailRenderer = GetComponent<TrailRenderer>();
+		_trailFallRate = Player.instance.TrailFallRate;
 	}
 
 	void Update()
     {
 		_time += Time.deltaTime * _currentSpeed;
-		//_time += Time.deltaTime;													// Replace to see weird effect
 
 		// Position
 		_currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, Time.deltaTime);
 		transform.position = new Vector3(
-			Center.x + Mathf.Cos(_time/* * _currentSpeed*/) * Radius,	//			// Replace to see weird effect
-			Center.y + Mathf.Sin(_time/* * _currentSpeed*/) * Radius);
+			Center.x + Mathf.Cos(_time) * Radius,
+			Center.y + Mathf.Sin(_time) * Radius);
 
 
 		// Trail
+		float _newTrailTime = _trailRenderer.time - _trailFallRate * Time.deltaTime;
+		if (_newTrailTime > 0) _trailRenderer.time = _newTrailTime;
 		if (!_isTrailActive && _time > 0.2f)
 		{
 			_isTrailActive = true;
-			GetComponent<TrailRenderer>().enabled = true;
+			_trailRenderer.enabled = true;
 		}
+	}
+
+	public TrailRenderer GetTrailRenderer()
+	{
+		return _trailRenderer;
 	}
 
 	public void SetCenter(Vector3 newCenter, float newRadius)
@@ -50,7 +60,6 @@ public class Ball : MonoBehaviour
 
 		Radius = newRadius;
 
-		//_targetSpeed *= _initialRadius / Radius;						//			// Replace to see weird effect
 		_targetSpeed = _initialRadius / Radius * Speed;
 	}
 

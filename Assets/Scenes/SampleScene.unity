@@ -748,7 +748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120.7, y: -46.299988}
+  m_AnchoredPosition: {x: -120.70001, y: -46.299988}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651306278
@@ -1329,7 +1329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -51.200012, y: 120.600006}
+  m_AnchoredPosition: {x: -51.200012, y: 120.599976}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671248227
@@ -1702,7 +1702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 51.200012, y: 120.600006}
+  m_AnchoredPosition: {x: 51.200012, y: 120.599976}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1941024760
@@ -1894,6 +1894,8 @@ MonoBehaviour:
   ThumbIndicatorPrefab: {fileID: 8962454209112933498, guid: 97d86d10100d8c142bad0f2261103389,
     type: 3}
   ThumbLimit: 3
+  TrailFallRate: 0.2
+  TrailReplenishRate: 1
   LineWidth: 0.04
   LineColor: {r: 0.14901961, g: 0.19607843, b: 0.21960784, a: 1}
   LineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}

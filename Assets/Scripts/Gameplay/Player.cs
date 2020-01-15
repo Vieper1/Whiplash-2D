@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
 	[Header("Game")]
 	public int ThumbLimit = 3;
+	public float TrailFallRate = 1f;
+	public float TrailReplenishRate = 1f;
 
 	[Header("Lines")]
 	public float LineWidth = 1f;
@@ -36,9 +38,6 @@ public class Player : MonoBehaviour
 
 		_positions.Add(transform.position);
 		_positions.Add(Vector3.zero);
-
-		// Aspect Ratio Size Control
-
 	}
 	
     void Update()
@@ -54,6 +53,7 @@ public class Player : MonoBehaviour
 	public void OnPickupHit()
 	{
 		_score += _positions.Count - 1;
+		Ball.GetTrailRenderer().time += TrailReplenishRate;
 	}
 
 	public int GetScore()
