@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	public int ThumbLimit = 3;
 	public float TrailFallRate = 1f;
 	public float TrailReplenishRate = 1f;
+	public float TrailTimeMax = 3f;
 
 	[Header("Lines")]
 	public float LineWidth = 1f;
@@ -53,7 +54,11 @@ public class Player : MonoBehaviour
 	public void OnPickupHit()
 	{
 		_score += _positions.Count - 1;
-		Ball.GetTrailRenderer().time += TrailReplenishRate;
+		float _newTrailTime = Ball.GetTrailRenderer().time + TrailReplenishRate;
+		if (_newTrailTime < TrailTimeMax)
+			Ball.GetTrailRenderer().time = _newTrailTime;
+		else
+			Ball.GetTrailRenderer().time = TrailTimeMax;
 	}
 
 	public int GetScore()

@@ -1896,6 +1896,7 @@ MonoBehaviour:
   ThumbLimit: 3
   TrailFallRate: 0.2
   TrailReplenishRate: 1
+  TrailTimeMax: 2.5
   LineWidth: 0.04
   LineColor: {r: 0.14901961, g: 0.19607843, b: 0.21960784, a: 1}
   LineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
