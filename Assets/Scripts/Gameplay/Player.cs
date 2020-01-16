@@ -29,7 +29,11 @@ public class Player : MonoBehaviour
 	private List<GameObject> _thumbIndicators = new List<GameObject>();
 	private int _score = 0;
 
-    void Start()
+	[Header("Config")]
+	public bool DisableInput;
+
+
+	void Start()
     {
 		if (instance != this)
 		{
@@ -141,22 +145,26 @@ public class Player : MonoBehaviour
 
 	public void Input_Up()
 	{
+		if (DisableInput) return;
 		Decoy.IncrementRatio();
 	}
 
 	public void Input_Down()
 	{
+		if (DisableInput) return;
 		Decoy.DecrementRatio();
 	}
 
 	public void Input_AddThumb()
 	{
+		if (DisableInput) return;
 		AddThumb(Decoy.transform.position);
 		Decoy._thumbRatio = Decoy.ThumbRatioDeadzone;
 	}
 
 	public void Input_RemoveThumb()
 	{
+		if (DisableInput) return;
 		PopThumb();
 	}
 }
