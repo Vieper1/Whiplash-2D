@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
 	public Ball Ball;
 	public Decoy Decoy;
 	public GameObject ThumbIndicatorPrefab;
+	public GameOverPanel GameOverPanelRef;
 
 	[Header("Game")]
 	public int ThumbLimit = 3;
@@ -26,12 +28,17 @@ public class Player : MonoBehaviour
 	[Header("Decoy")]
 	public float MoveSpeed = 1f;
 
+	[Header("Config")]
+	public bool DisableInput;
+
+
+
 	private List<Vector3> _positions = new List<Vector3>();
 	private List<GameObject> _thumbIndicators = new List<GameObject>();
 	private int _score = 0;
+	private bool _isGameOver;
 
-	[Header("Config")]
-	public bool DisableInput;
+	
 
 
 	void Start()
@@ -71,6 +78,30 @@ public class Player : MonoBehaviour
 		return _score;
 	}
 
+
+
+
+
+
+
+
+	// Game
+	public void EndGame()
+	{
+		if (!_isGameOver)
+		{
+			GameOverPanelRef.gameObject.SetActive(true);
+			_isGameOver = true;
+			DisableInput = true;
+			GameOverPanelRef.RefreshStats(_score, SaveGame.LoadScore());
+			SaveGame.SaveScore(_score);
+		}
+	}
+
+	public bool IsGameOver()
+	{
+		return _isGameOver;
+	}
 
 
 

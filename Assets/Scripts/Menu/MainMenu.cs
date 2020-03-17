@@ -1,26 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-	public GameObject HighScoreText;
+	public Text HighScoreText;
 
 	int highestScore = 0;
 
     void Start()
     {
 		highestScore = SaveGame.LoadScore();
-		if (highestScore == 0)
-		{
-			HighScoreText.SetActive(false);
-		}
-    }
-
-    void Update()
-    {
-        
+		HighScoreText.text = highestScore.ToString();
     }
 
 	public void PlayGame()

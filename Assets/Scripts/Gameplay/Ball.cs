@@ -40,7 +40,11 @@ public class Ball : MonoBehaviour
 
 		// Trail
 		float _newTrailTime = _trailRenderer.time - _trailFallRate * Time.deltaTime;
-		if (_newTrailTime > 0) _trailRenderer.time = _newTrailTime;
+		_trailRenderer.time = _newTrailTime;
+		if (_newTrailTime < 0)
+		{
+			Player.instance.EndGame();
+		}
 		if (!_isTrailActive && _time > 0.2f)
 		{
 			_isTrailActive = true;

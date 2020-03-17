@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SaveGame : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class SaveGame : MonoBehaviour
 		int savedScore = PlayerPrefs.GetInt("Score", -1);
 		if (i_score > savedScore)
 		{
-			PlayerPrefs.SetInt("Score", savedScore);
+			PlayerPrefs.SetInt("Score", i_score);
 		}
 	}
 

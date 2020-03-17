@@ -8,6 +8,8 @@ public class CameraDrawLines : MonoBehaviour
 
 	private void OnPostRender()
 	{
+		if (Player.instance.IsGameOver()) return;
+
 		_positions = Player.instance.GetPositions();
 
 		GL.PushMatrix();
